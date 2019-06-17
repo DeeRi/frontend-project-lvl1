@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { makeGreeting, gameCountNumbers } from '..';
+import { makeGreeting } from '..';
 
 makeGreeting();
-gameCountNumbers();
