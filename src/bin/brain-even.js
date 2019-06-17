@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import { getRandom, numberGame } from '..';
+import { getRandom, randomNumberGame } from '..';
 
 getRandom();
-numberGame();
+randomNumberGame();
+
+// вывод имени один раз работает, экспорт не ругается
