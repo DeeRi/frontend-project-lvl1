@@ -6,3 +6,4 @@
 
 ![](example-of-working.gif)
 ![](example-of-working1.gif)
+![](example-of-working2.gif)
