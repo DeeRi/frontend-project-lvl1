@@ -53,6 +53,28 @@ export function greatestDivisor(num1, num2) {
   return greatestDivisor(num2, num1 % num2);
 }
 
+let hiddenNumber;
+export function initSeries() {
+  let x = 0;
+  let resultString = '';
+  const step = getRandom();
+
+  const min = 1;
+  const max = 10;
+  let index = min + Math.random() * (max + 1 - min);
+  index = Math.floor(index);
+
+  for (let i = 1; i <= 10; i += 1) {
+    x += step;
+    const isIndex = i === index ? '..' : `${x}`;
+    if (isIndex === '..') {
+      hiddenNumber = x;
+    }
+    resultString = `${resultString} ${isIndex}`;
+  }
+  return resultString;
+}
+
 // games
 
 export function randomNumberGame() {
@@ -130,6 +152,29 @@ export function greatestDivisorGame() {
       i += 1;
     } else {
       console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${rightAnswer}.Let's try again, ${userName}!`);
+      return;
+    }
+  }
+  console.log(`Congratulations, ${userName}!`);
+}
+
+export function initSeriesGame() {
+  console.log('Welcome to the Brain Games!');
+  console.log('What number is missing in the progression?');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+
+  let i = 0;
+  while (i < 3) {
+    const question = initSeries();
+    console.log(`Question: ${question}`);
+    const userAnswer = readlineSync.question('Your answer: ');
+
+    if (hiddenNumber === Number(userAnswer)) {
+      console.log('Correct!');
+      i += 1;
+    } else {
+      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${hiddenNumber}.Let's try again, ${userName}!`);
       return;
     }
   }
