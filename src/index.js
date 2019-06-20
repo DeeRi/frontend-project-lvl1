@@ -8,32 +8,32 @@ export function makeGreeting() {
 }
 
 export function getRandom() {
-  const max = 100;
+  const maxNumber = 100;
 
-  const random = Math.floor(Math.random(max) * max);
-  return random;
+  const randomNumber = Math.floor(Math.random(maxNumber) * maxNumber);
+  return randomNumber;
 }
 
 export function randomExpression() {
-  let max = 100;
-  const num1 = Math.floor(Math.random(max) * max);
-  const num2 = Math.floor(Math.random(max) * max);
+  let maxNumber = 100;
+  const firstNumber = Math.floor(Math.random(maxNumber) * maxNumber);
+  const secondNumber = Math.floor(Math.random(maxNumber) * maxNumber);
 
-  max = 2;
+  maxNumber = 2;
   const min = 0;
-  let opindex = min + Math.random() * (max + 1 - min);
+  let opindex = min + Math.random() * (maxNumber + 1 - min);
   opindex = Math.floor(opindex);
 
   let res;
   switch (opindex) {
     case 0:
-      res = `${num1} + ${num2}`;
+      res = `${firstNumber} + ${secondNumber}`;
       return res;
     case 1:
-      res = `${num1} - ${num2}`;
+      res = `${firstNumber} - ${secondNumber}`;
       return res;
     case 2:
-      res = `${num1} * ${num2}`;
+      res = `${firstNumber} * ${secondNumber}`;
       return res;
     default:
       console.log();
@@ -42,29 +42,29 @@ export function randomExpression() {
 }
 
 
-export function greatestDivisor(num1, num2) {
-  if (!num2) {
-    return num1;
+export function greatestDivisor(firstNumber, secondNumber) {
+  if (!secondNumber) {
+    return firstNumber;
   }
-  return greatestDivisor(num2, num1 % num2);
+  return greatestDivisor(secondNumber, firstNumber % secondNumber);
 }
 
 // eslint-disable-next-line import/no-mutable-exports
 export let hiddenNumber;
 export function initSeries() {
-  let x = 0;
+  let initialValue = 0;
   let resultString = '';
-  const step = getRandom();
+  const stepOfProgression = getRandom();
 
   const min = 1;
   const max = 10;
   let index = min + Math.random() * (max + 1 - min);
   index = Math.floor(index);
   for (let i = 1; i <= 10; i += 1) {
-    x += step;
-    const isIndex = i === index ? '..' : `${x}`;
+    initialValue += stepOfProgression;
+    const isIndex = i === index ? '..' : `${initialValue}`;
     if (isIndex === '..') {
-      hiddenNumber = x;
+      hiddenNumber = initialValue;
     }
     resultString = `${resultString} ${isIndex}`;
   }
