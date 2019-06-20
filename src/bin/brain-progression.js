@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { initSeries, initSeriesGame } from '..';
+import { initSeries } from '..';
+import initSeriesGame from '../games/init-series';
 
 initSeries();
 initSeriesGame();
