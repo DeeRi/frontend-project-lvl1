@@ -2,7 +2,6 @@
   "name": "package-of-brain-games",
   "version": "1.0.0",
   "description": "A set of math games",
-  "main": "dist/index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
     "brain-even": "dist/bin/brain-even.js",
@@ -14,6 +13,11 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "game",
+    "brain",
+    "mathematics"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
@@ -23,10 +27,6 @@
     "type": "git",
     "url": "https://github.com/DeeRi/frontend-project-lvl1"
   },
-  "keywords": [
-    "mathematics",
-    "JavaScript"
-  ],
   "author": "Alena",
   "license": "ISC",
   "devDependencies": {
