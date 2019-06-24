@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import { makeGreeting } from '..';
+import makeGreeting from '../greeting';
 
 makeGreeting();
