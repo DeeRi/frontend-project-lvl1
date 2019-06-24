@@ -1,84 +1,30 @@
-/* eslint-disable no-eval */
 import readlineSync from 'readline-sync';
+import { car, cdr } from 'hexlet-pairs';
 
-export function makeGreeting() {
+export default function mainFunction(gameDescription, gameFunction) {
   console.log('Welcome to the Brain Games!');
-  const nameOfUser = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${nameOfUser}!`);
-}
+  console.log(`${gameDescription}`);
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
 
-export function getRandom() {
-  const maxNumber = 100;
+  let moveNumber = 3;
+  while (moveNumber > 0) {
+    const runFunction = gameFunction();
+    const getQuestion = car(runFunction);
+    const getAnswer = cdr(runFunction);
 
-  const randomNumber = Math.floor(Math.random(maxNumber) * maxNumber);
-  return randomNumber;
-}
+    console.log(`Question: ${getQuestion}`);
+    const userAnswer = readlineSync.question('Your answer: ');
 
-export function randomExpression() {
-  let maxNumber = 100;
-  const firstNumber = Math.floor(Math.random(maxNumber) * maxNumber);
-  const secondNumber = Math.floor(Math.random(maxNumber) * maxNumber);
-
-  maxNumber = 2;
-  const min = 0;
-  let opindex = min + Math.random() * (maxNumber + 1 - min);
-  opindex = Math.floor(opindex);
-
-  let res;
-  switch (opindex) {
-    case 0:
-      res = `${firstNumber} + ${secondNumber}`;
-      return res;
-    case 1:
-      res = `${firstNumber} - ${secondNumber}`;
-      return res;
-    case 2:
-      res = `${firstNumber} * ${secondNumber}`;
-      return res;
-    default:
-      console.log();
-  }
-  return res;
-}
-
-
-export function greatestDivisor(firstNumber, secondNumber) {
-  if (!secondNumber) {
-    return firstNumber;
-  }
-  return greatestDivisor(secondNumber, firstNumber % secondNumber);
-}
-
-// eslint-disable-next-line import/no-mutable-exports
-export let hiddenNumber;
-export function initSeries() {
-  let initialValue = 0;
-  let resultString = '';
-  const stepOfProgression = getRandom();
-
-  const min = 1;
-  const max = 10;
-  let index = min + Math.random() * (max + 1 - min);
-  index = Math.floor(index);
-  for (let i = 1; i <= 10; i += 1) {
-    initialValue += stepOfProgression;
-    const isIndex = i === index ? '..' : `${initialValue}`;
-    if (isIndex === '..') {
-      hiddenNumber = initialValue;
+    if (toString(userAnswer) !== toString(getAnswer)) {
+      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${getAnswer}.Let's try again, ${userName}!`);
+      return;
     }
-    resultString = `${resultString} ${isIndex}`;
-  }
-  return resultString;
-}
 
-export function isPrime(number) {
-  // eslint-disable-next-line no-restricted-globals
-  if (isNaN(number) || !isFinite(number) || number % 1 || number < 2) { return false; }
-  const max = Math.floor(Math.sqrt(number));
-  for (let i = 2; i <= max; i += 1) {
-    if (number % i === 0) {
-      return false;
+    if (toString(userAnswer) === toString(getAnswer)) {
+      console.log('Correct!');
+      moveNumber -= 1;
     }
   }
-  return true;
+  console.log(`Congratulations, ${userName}!`);
 }
