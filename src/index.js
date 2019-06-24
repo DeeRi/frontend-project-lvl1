@@ -16,12 +16,12 @@ export default function mainFunction(gameDescription, gameFunction) {
     console.log(`Question: ${getQuestion}`);
     const userAnswer = readlineSync.question('Your answer: ');
 
-    if (toString(userAnswer) !== toString(getAnswer)) {
+    if (userAnswer !== getAnswer) {
       console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${getAnswer}.Let's try again, ${userName}!`);
       return;
     }
 
-    if (toString(userAnswer) === toString(getAnswer)) {
+    if (userAnswer === getAnswer) {
       console.log('Correct!');
       moveNumber -= 1;
     }
