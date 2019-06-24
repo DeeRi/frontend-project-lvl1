@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import { getRandom } from '..';
-import randomNumberGame from '../games/even';
+import mainFunction from '../games/even';
 
-getRandom();
-randomNumberGame();
+mainFunction();

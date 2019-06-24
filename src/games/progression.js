@@ -1,26 +1,29 @@
-import { initSeries, hiddenNumber } from '..';
-import readlineSync from 'readline-sync';
+import { cons } from 'hexlet-pairs';
+import getRandom from '../random';
+import mainFunction from '..';
 
+const gameDescription = 'What number is missing in the progression?';
 
-export default function initSeriesGame() {
-  console.log('Welcome to the Brain Games!');
-  console.log('What number is missing in the progression?');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
+export default function gameFunction() {
+  let hiddenNumber = 0;
+  let initialValue = 0;
+  let resultString = '';
+  const stepOfProgression = getRandom();
 
-  let i = 0;
-  while (i < 3) {
-    const gameFunction = initSeries();
-    console.log(`Question: ${gameFunction}`);
-    const userAnswer = readlineSync.question('Your answer: ');
-
-    if (hiddenNumber === Number(userAnswer)) {
-      console.log('Correct!');
-      i += 1;
-    } else {
-      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${hiddenNumber}.Let's try again, ${userName}!`);
-      return;
+  const min = 1;
+  const max = 10;
+  let index = min + Math.random() * (max + 1 - min);
+  index = Math.floor(index);
+  for (let i = 1; i <= 10; i += 1) {
+    initialValue += stepOfProgression;
+    const isIndex = i === index ? '..' : `${initialValue}`;
+    if (isIndex === '..') {
+      hiddenNumber = initialValue;
     }
+    resultString = `${resultString} ${isIndex}`;
   }
-  console.log(`Congratulations, ${userName}!`);
+  hiddenNumber = String(hiddenNumber);
+  return cons(resultString, hiddenNumber);
 }
+
+mainFunction(gameDescription, gameFunction);

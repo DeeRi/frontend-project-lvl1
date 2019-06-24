@@ -1,27 +1,31 @@
 /* eslint-disable no-eval */
-import { randomExpression } from '..';
-import readlineSync from 'readline-sync';
+import { cons } from 'hexlet-pairs';
+import mainFunction from '../index';
+import getRandom from '../random';
 
-export default function countNumberGame() {
-  console.log('Welcome to the Brain Games!');
-  console.log('What is the result of the expression?');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
+const gameDescription = 'What is the result of the expression?';
 
-  let i = 0;
-  while (i < 3) {
-    const gameFunction = randomExpression();
-    console.log(`Question: ${gameFunction}`);
-    const userAnswer = readlineSync.question('Your answer: ');
+export default function gameFunction() {
+  const firstNumber = getRandom();
+  const secondNumber = getRandom();
 
+  const max = 2;
+  const min = 0;
+  let opindex = min + Math.random() * (max + 1 - min);
+  opindex = Math.floor(opindex);
 
-    if (Number(userAnswer) === eval(gameFunction)) {
-      console.log('Correct!');
-      i += 1;
-    } else {
-      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${eval(gameFunction)}.Let's try again, ${userName}!`);
-      return;
-    }
+  let res;
+  if (opindex === 0) {
+    res = `${firstNumber} + ${secondNumber}`;
   }
-  console.log(`Congratulations, ${userName}!`);
+  if (opindex === 1) {
+    res = `${firstNumber} - ${secondNumber}`;
+  } else {
+    res = `${firstNumber} * ${secondNumber}`;
+  }
+  let countedExpression = eval(res);
+  countedExpression = String(countedExpression);
+  return cons(res, countedExpression);
 }
+
+mainFunction(gameDescription, gameFunction);

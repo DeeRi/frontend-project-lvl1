@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import { randomExpression } from '..';
-import countNumberGame from '../games/calc';
+import mainFunction from '../games/calc';
 
-randomExpression();
-countNumberGame();
+mainFunction();
