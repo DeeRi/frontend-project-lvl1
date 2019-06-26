@@ -1,31 +1,32 @@
-/* eslint-disable no-eval */
 import { cons } from 'hexlet-pairs';
-import mainFunction from '../index';
-import getRandom from '../random';
+import showGame from '../index';
+import getRandomNumber from '../random';
 
 const gameDescription = 'What is the result of the expression?';
 
-export default function gameFunction() {
-  const firstNumber = getRandom();
-  const secondNumber = getRandom();
+export default function getGameData() {
+  const firstValue = getRandomNumber();
+  const secondValue = getRandomNumber();
 
-  const max = 2;
-  const min = 0;
-  let opindex = min + Math.random() * (max + 1 - min);
-  opindex = Math.floor(opindex);
+  const max = 3;
+  const opindex = Math.floor(Math.random() * max) + 1;
 
-  let res;
-  if (opindex === 0) {
-    res = `${firstNumber} + ${secondNumber}`;
-  }
+  let gameQuestion = '';
+  let expressionResult = 0;
   if (opindex === 1) {
-    res = `${firstNumber} - ${secondNumber}`;
-  } else {
-    res = `${firstNumber} * ${secondNumber}`;
+    gameQuestion = `${firstValue} + ${secondValue}`;
+    expressionResult = Number(firstValue) + Number(secondValue);
   }
-  let countedExpression = eval(res);
-  countedExpression = String(countedExpression);
-  return cons(res, countedExpression);
+  if (opindex === 2) {
+    gameQuestion = `${firstValue} - ${secondValue}`;
+    expressionResult = Number(firstValue) - Number(secondValue);
+  }
+  if (opindex === 3) {
+    gameQuestion = `${firstValue} * ${secondValue}`;
+    expressionResult = Number(firstValue) * Number(secondValue);
+  }
+  expressionResult = String(expressionResult);
+  return cons(gameQuestion, expressionResult);
 }
 
-mainFunction(gameDescription, gameFunction);
+showGame(gameDescription, getGameData);
