@@ -1,21 +1,22 @@
 import { cons } from 'hexlet-pairs';
-import getRandom from '../random';
-import mainFunction from '..';
+import getRandomNumber from '../random';
+import showGame from '..';
 
 const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-export default function gameFunction() {
-  const randomNumber = getRandom();
-  if (randomNumber % 1 || randomNumber < 2) {
-    return cons(randomNumber, 'no');
+export default function getGameData() {
+  const gameQuestion = getRandomNumber();
+  const isPrime = gameQuestion % 1 || gameQuestion < 2;
+  if (isPrime === true) {
+    return cons(gameQuestion, 'no');
   }
-  const max = Math.floor(Math.sqrt(randomNumber));
+  const max = Math.floor(Math.sqrt(gameQuestion));
   for (let i = 2; i <= max; i += 1) {
-    if (randomNumber % i === 0) {
-      return cons(randomNumber, 'no');
+    if (gameQuestion % i === 0) {
+      return cons(gameQuestion, 'no');
     }
   }
-  return cons(randomNumber, 'yes');
+  return cons(gameQuestion, 'yes');
 }
 
-mainFunction(gameDescription, gameFunction);
+showGame(gameDescription, getGameData);

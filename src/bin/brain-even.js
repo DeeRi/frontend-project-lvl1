@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import mainFunction from '../games/even';
+import showGame from '../games/even';
 
-mainFunction();
+showGame();

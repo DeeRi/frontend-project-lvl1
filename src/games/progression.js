@@ -1,29 +1,29 @@
 import { cons } from 'hexlet-pairs';
-import getRandom from '../random';
-import mainFunction from '..';
+import getRandomNumber from '../random';
+import showGame from '..';
 
 const gameDescription = 'What number is missing in the progression?';
 
-export default function gameFunction() {
+export default function getGameData() {
   let hiddenNumber = 0;
   let initialValue = 0;
-  let resultString = '';
-  const stepOfProgression = getRandom();
+  let gameQuestion = '';
+  const stepOfProgression = getRandomNumber();
 
-  const min = 1;
   const max = 10;
-  let index = min + Math.random() * (max + 1 - min);
-  index = Math.floor(index);
-  for (let i = 1; i <= 10; i += 1) {
+  const index = Math.floor(Math.random() * max) + 1;
+  const valuesNumber = 10;
+
+  for (let i = 1; i <= valuesNumber; i += 1) {
     initialValue += stepOfProgression;
     const isIndex = i === index ? '..' : `${initialValue}`;
     if (isIndex === '..') {
       hiddenNumber = initialValue;
     }
-    resultString = `${resultString} ${isIndex}`;
+    gameQuestion = `${gameQuestion} ${isIndex}`;
   }
   hiddenNumber = String(hiddenNumber);
-  return cons(resultString, hiddenNumber);
+  return cons(gameQuestion, hiddenNumber);
 }
 
-mainFunction(gameDescription, gameFunction);
+showGame(gameDescription, getGameData);

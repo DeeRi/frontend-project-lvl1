@@ -1,20 +1,19 @@
-import mainFunction from '..';
-import getRandom from '../random';
+import showGame from '..';
+import getRandomNumber from '../random';
 import { cons } from 'hexlet-pairs';
-
 
 const gameDescription = 'Find the greatest common divisor of given numbers.';
 
-export default function gameFunction() {
-  let firstNumber = getRandom();
-  let secondNumber = getRandom();
-  const questionString = `${firstNumber} ${secondNumber}`;
+export default function getGameData() {
+  let firstValue = getRandomNumber();
+  let secondValue = getRandomNumber();
+  const gameQuestion = `${firstValue} ${secondValue}`;
 
-  while (secondNumber !== 0) {
-    secondNumber = firstNumber % (firstNumber = secondNumber);
+  while (secondValue !== 0) {
+    secondValue = firstValue % (firstValue = secondValue);
   }
-  firstNumber = String(firstNumber);
-  return cons(questionString, firstNumber);
+  firstValue = String(firstValue);
+  return cons(gameQuestion, firstValue);
 }
 
-mainFunction(gameDescription, gameFunction);
+showGame(gameDescription, getGameData);

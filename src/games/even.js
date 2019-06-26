@@ -1,14 +1,20 @@
-import mainFunction from '..';
-import getRandom from '../random';
+import showGame from '..';
+import getRandomNumber from '../random';
 import { cons } from 'hexlet-pairs';
 
 const gameDescription = 'Answer "yes" if number even otherwise answer "no".';
 
-export default function gameFunction() {
-  const gameNumber = getRandom();
-  const isEven = gameNumber % 2 === 0 ? 'yes' : 'no';
-  const rightAnswer = isEven;
-  return cons(gameNumber, rightAnswer);
+export default function getGameData() {
+  const gameQuestion = getRandomNumber();
+  let rightAnswer = '';
+  const isEven = gameQuestion % 2 === 0;
+  if (isEven === true) {
+    rightAnswer = 'yes';
+  }
+  if (isEven === false) {
+    rightAnswer = 'no';
+  }
+  return cons(gameQuestion, rightAnswer);
 }
 
-mainFunction(gameDescription, gameFunction);
+showGame(gameDescription, getGameData);
