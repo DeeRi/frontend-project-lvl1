@@ -8,9 +8,9 @@ export default function showGame(gameDescription, getGameData) {
   console.log(`Hello, ${userName}!`);
 
   for (let stepsCount = 3; stepsCount > 0; stepsCount -= 1) {
-    const runFunction = getGameData();
-    const getQuestion = car(runFunction);
-    const getAnswer = cdr(runFunction);
+    const gameData = getGameData();
+    const getQuestion = car(gameData);
+    const getAnswer = cdr(gameData);
 
     console.log(`Question: ${getQuestion}`);
     const userAnswer = readlineSync.question('Your answer: ');
