@@ -1,29 +1,26 @@
 import { cons } from 'hexlet-pairs';
-import getRandomNumber from '../random';
-import showGame from '..';
+import getRandomValue from '../random';
+import playGame from '..';
 
 const gameDescription = 'What number is missing in the progression?';
 
-export default function getGameData() {
-  let hiddenNumber = 0;
-  let initialValue = 0;
+const getGameData = () => {
+  let hiddenElement = 0;
+  let firstElement = 0;
   let gameQuestion = '';
-  const stepOfProgression = getRandomNumber();
-
-  const max = 10;
-  const index = Math.floor(Math.random() * max) + 1;
-  const valuesNumber = 10;
-
-  for (let i = 1; i <= valuesNumber; i += 1) {
-    initialValue += stepOfProgression;
-    const isIndex = i === index ? '..' : `${initialValue}`;
-    if (isIndex === '..') {
-      hiddenNumber = initialValue;
+  const step = getRandomValue(1, 100);
+  const hiddenElementIndex = getRandomValue(1, 10);
+  const progressionLength = 10;
+  for (let i = 1; i <= progressionLength; i += 1) {
+    firstElement += step;
+    const isSameIndex = i === hiddenElementIndex ? '..' : `${firstElement}`;
+    if (isSameIndex === '..') {
+      hiddenElement = firstElement;
     }
-    gameQuestion = `${gameQuestion} ${isIndex}`;
+    gameQuestion = `${gameQuestion} ${isSameIndex}`;
   }
-  hiddenNumber = String(hiddenNumber);
-  return cons(gameQuestion, hiddenNumber);
-}
+  hiddenElement = String(hiddenElement);
+  return cons(gameQuestion, hiddenElement);
+};
 
-showGame(gameDescription, getGameData);
+export default () => playGame(gameDescription, getGameData);
