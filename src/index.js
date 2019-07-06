@@ -21,9 +21,7 @@ const playGame = (gameDescription, getGameData) => {
       console.log(`Let's try again, ${userName}!`);
       return;
     }
-    if (userAnswer === getAnswer) {
-      console.log('Correct!');
-    }
+    console.log('Correct!');
   }
   console.log(`Congratulations, ${userName}!`);
 };
