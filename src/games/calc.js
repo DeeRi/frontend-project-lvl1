@@ -2,19 +2,18 @@ import { cons } from 'hexlet-pairs';
 import getRandomValue from '../random';
 import playGame from '..';
 
-
 const mathOperators = ['+', '-', '*'];
 
-const calculateExpression = (a, b, operatorIndex) => {
-  switch (operatorIndex) {
-    case 0:
+const calculateExpression = (a, b, operator) => {
+  switch (operator) {
+    case '+':
       return a + b;
-    case 1:
+    case '-':
       return a - b;
-    case 2:
+    case '*':
       return a * b;
     default:
-      return a + b;
+      return null;
   }
 };
 
@@ -23,9 +22,9 @@ const gameDescription = 'What is the result of the expression?';
 const getGameData = () => {
   const firstValue = getRandomValue(1, 100);
   const secondValue = getRandomValue(1, 100);
-  const operatorIndex = getRandomValue(0, mathOperators.length - 1);
-  const gameQuestion = `${firstValue} ${mathOperators[operatorIndex]} ${secondValue}`;
-  const rightAnswer = String(calculateExpression(firstValue, secondValue, operatorIndex));
+  const operator = mathOperators[getRandomValue(0, mathOperators.length - 1)];
+  const gameQuestion = `${firstValue} ${operator} ${secondValue}`;
+  const rightAnswer = String(calculateExpression(firstValue, secondValue, operator));
   return cons(gameQuestion, rightAnswer);
 };
 
