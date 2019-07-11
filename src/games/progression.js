@@ -6,16 +6,15 @@ const gameDescription = 'What number is missing in the progression?';
 const progressionLength = 10;
 
 const makeProgressionWithHiddenElement = (firstElement, step, hiddenElementIndex) => {
-  const progression = '';
   const iter = (index, acc) => {
-    if (index > 9) {
-      return acc;
+    if (index > progressionLength - 1) {
+      return acc.trim();
     }
     const newElement = firstElement + step * index;
-    const isHiddenNumber = index === hiddenElementIndex ? '..' : newElement;
-    return iter(index + 1, `${acc} ${isHiddenNumber}`);
+    const followingElement = index === hiddenElementIndex ? '..' : newElement;
+    return iter(index + 1, `${acc} ${followingElement}`);
   };
-  return iter(0, progression);
+  return iter(0, '');
 };
 
 const getGameData = () => {
